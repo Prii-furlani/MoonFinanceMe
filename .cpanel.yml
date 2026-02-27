@@ -1,0 +1,17 @@
+# 🌙 MOONFINANCE - CPANEL DEPLOY CONFIG
+# 🚀 INICIALIZAÇÃO E MOVIMENTAÇÃO DE ARQUIVOS ESTÁTICOS
+# // 🚀 Explicação para a Aprendiz: Este arquivo é o 'carregador'. 
+# // Ele move o que está no Git para a pasta onde o site realmente aparece (public_html).
+
+deployment:
+  tasks:
+    # 💡 Passo 1: Definir o caminho de destino
+    - export DEPLOYPATH=/home1/pri04258/public_html/moonfinance/
+
+    # 💡 Passo 2: Mover apenas o Frontend (pois o Backend rodará no Render)
+    # // Rastreabilidade: Registramos a movimentação de cada pasta.
+    - /bin/cp -R frontend/public/* $DEPLOYPATH
+    - /bin/cp -R frontend/src/* $DEPLOYPATH/src/
+    
+    # 💡 Passo 3: Registrar que o deploy foi concluído no log do servidor
+    - /bin/echo "Deploy concluído com sucesso para o domínio moonfinanceme.com.br"
